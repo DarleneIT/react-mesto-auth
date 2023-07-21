@@ -70,7 +70,7 @@ function App() {
   }
 
  useEffect(() => {
-  if (!isLoggedIn) {
+  if (isLoggedIn) {
     Promise.all([api.getUserInfo(), api.getItems()])
     .then(([currentUser, initialCards]) => {
       setCurrentUser(currentUser);
@@ -176,6 +176,8 @@ function handleLogin(data) {
     })
     .catch((err) => {
       console.log(err);
+      setIsSuccessInfoTooltipStatus(false);
+      openInfoTooltip();
     });
 }
 
